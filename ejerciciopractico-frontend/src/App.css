@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #000000;
+  padding: 10px;
+  color: white;
+}
+
+.login, .inventory, .historical, .product-modal {
+  margin: 20px;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 200px;
+  text-align: left;
+}
+
+.product-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px;
+  background-color: #b12b2b;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+button:hover {
+  background-color: #e05353;
+}
