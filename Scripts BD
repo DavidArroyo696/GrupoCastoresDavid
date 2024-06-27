@@ -1,0 +1,43 @@
+Scripts para la base de Datos en MySQL
+
+CREATE TABLE tipo_de_rol (
+    idRol INT PRIMARY KEY,
+    nombreRol VARCHAR(50) NOT NULL
+);
+
+INSERT INTO tipo_de_rol (idRol, nombreRol) VALUES (1, 'Administrador');
+INSERT INTO tipo_de_rol (idRol, nombreRol) VALUES (2, 'Almacenista');
+
+CREATE TABLE productos (
+    idProducto INT PRIMARY KEY AUTO_INCREMENT,
+    nombreProducto VARCHAR(100) NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    estatus VARCHAR(20) CHECK (estatus IN ('Activo', 'Inactivo')) NOT NULL
+);
+
+INSERT INTO productos (nombreProducto, precio, estatus) VALUES ('Producto A', 100.00, 'Activo');
+INSERT INTO productos (nombreProducto, precio, estatus) VALUES ('Producto B', 150.00, 'Inactivo');
+
+CREATE TABLE historico (
+    idHistorico INT PRIMARY KEY AUTO_INCREMENT,
+    idUsuario INT,
+    fechaHora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    tipoMovimiento VARCHAR(20) CHECK (tipoMovimiento IN ('Entrada', 'Salida')) NOT NULL,
+    FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)
+);
+
+INSERT INTO historico (idUsuario, tipoMovimiento) VALUES (1, 'Entrada');
+INSERT INTO historico (idUsuario, tipoMovimiento) VALUES (2, 'Salida');
+
+CREATE TABLE usuarios (
+    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) NOT NULL,
+    idRol INT,
+    estatus VARCHAR(20) NOT NULL,
+    FOREIGN KEY (idRol) REFERENCES tipo_de_rol(idRol)
+);
+
+INSERT INTO usuarios (nombre, correo, idRol, estatus) VALUES ('Juan Perez', 'juan.perez@example.com', 1, 'Activo');
+INSERT INTO usuarios (nombre, correo, idRol, estatus) VALUES ('Maria Lopez', 'maria.lopez@example.com', 2, 'Activo');
+
